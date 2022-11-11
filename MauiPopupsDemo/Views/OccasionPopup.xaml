@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="MauiPopupsDemo.Views.OccasionPopup">
+    <VerticalStackLayout
+        BackgroundColor="White"
+        MinimumWidthRequest="250"
+        MinimumHeightRequest="300"
+        Padding="20">
+        <Label 
+            Text="Date"
+            Margin="0,20,0,0"/>
+        <DatePicker
+            x:Name="OccasionDate"/>
+
+        <Label
+            Text="Occasion Type"
+            Margin="0,20,0,0"/>
+        <Picker
+            x:Name="OccasionType"
+            Title="Select Occasion">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Anniversary</x:String>
+                    <x:String>Birthday</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Label
+            Text="Notes"
+            Margin="0,20,0,0"/>
+        <Entry
+            x:Name="OccasionNotes"
+            Placeholder="Any wish notes on the occasion!"
+            PlaceholderColor="Gray"/>
+
+        <Grid
+            ColumnDefinitions="*,*"
+            ColumnSpacing="10"
+            Margin="0,20,0,0">
+            <Button
+                Text="Cancel"
+                Clicked="CancelButton_Clicked"/>
+
+            <Button
+                Text="Save"
+                Clicked="SaveButton_Clicked"
+                Grid.Column="1"/>
+        </Grid>
+    </VerticalStackLayout>
+</toolkit:Popup>

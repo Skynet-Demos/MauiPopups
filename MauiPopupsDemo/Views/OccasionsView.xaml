@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiPopupsDemo.Views.OccasionsView"
+             xmlns:model="clr-namespace:MauiPopupsDemo.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="My Occasions">
+    <Page.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#fba118"/>
+    </Page.Behaviors>
+    <VerticalStackLayout
+        Spacing="10">
+        <Image
+            Source="landscape.png"/>
+
+        <Grid
+            RowDefinitions="Auto, Auto"
+            ColumnDefinitions="*, *"
+            ColumnSpacing="5"
+            Padding="5">
+            <Button
+                Text="Simple Popup"
+                Clicked="SimplePopup_Clicked"/>
+
+            <Button
+                Text="Occasion Popup"
+                Clicked="OccasionPopup_Clicked"
+                Grid.Column="1"/>
+        </Grid>
+        
+        <CollectionView
+            x:Name="occasionsList"
+            SelectionMode="None"
+            Margin="5">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:OccasionModel">
+                    <Frame
+                        Padding="5">
+                        <Grid
+                            RowDefinitions="Auto, Auto"
+                            ColumnDefinitions="4*, 3*, 3*"
+                            Padding="10">
+                            <Label
+                                Text="{Binding Date, StringFormat='{0:dd MMM yyyy}'}"
+                                TextColor="Black"
+                                FontAttributes="Italic"/>
+
+                            <Label
+                                Text="{Binding Occasion}"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                Grid.Column="1"/>
+
+                            <Label
+                                Text="{Binding Notes}"
+                                TextColor="Black"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"/>
+
+                            <Image
+                                Source="{Binding Image}"
+                                WidthRequest="80"
+                                HeightRequest="80"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Grid.Column="2"
+                                Grid.RowSpan="2"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
